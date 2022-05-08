@@ -11,10 +11,14 @@ from skills.alicenok.bathroom import *
 from skills.alicenok.walk import *
 from skills.alicenok.alicenok_help import *
 from skills.alicenok.back import *
+from flask import Blueprint, request
 
+alicenok_app = Blueprint('alicenok_app', __name__)
 
 # main function
-def handler(event, context): 
+@alicenok_app.route('/', methods=["POST"])
+def handler(): 
+    event = request.json
     intents = event['request']['nlu']['intents']
     wellcome_message = event['state']['user']['wellcome_message']
 
@@ -37,7 +41,19 @@ def handler(event, context):
         return alicenok()
         
     if 'back' in intents:
-        return back(event)
+        try:
+            return back(event)
+        except KeyError:
+            return {
+            'response' : {
+            'text' : 'Малыш, повтори пожалуйста ещё раз',
+            'tts' : 'Малыш, повтори пожалуйста ещё раз',
+            'end_session' : 'false',
+            'buttons' : [
+            {'title' : 'Назад',
+            'payload' : {},
+            'hide' : 'true'}]},
+            'version' : '1.0'}
 
     if 'alicenok_actions' in intents:
         return alicenok_actions(event)
