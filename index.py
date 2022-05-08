@@ -1,17 +1,16 @@
 # import
-from messages import *
-from main_skills import *
-from on_cartoons import *
-from entertainments_skills import *
-from games_list import *
-from alicenok import *
-from feed import *
-from drunk import *
-from bathroom import *
-from walk import *
-from alicenok_help import *
-from back import *
-import json
+from skills.alicenok.messages import *
+from skills.alicenok.main_skills import *
+from skills.alicenok.on_cartoons import *
+from skills.alicenok.entertainments_skills import *
+from skills.alicenok.games_list import *
+from skills.alicenok.alicenok import *
+from skills.alicenok.feed import *
+from skills.alicenok.drunk import *
+from skills.alicenok.bathroom import *
+from skills.alicenok.walk import *
+from skills.alicenok.alicenok_help import *
+from skills.alicenok.back import *
 
 
 # main function
