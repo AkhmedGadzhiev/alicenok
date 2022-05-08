@@ -3,7 +3,7 @@ def alicenok_help():
 	return {
 	'response' : {
 	'text' : 'Список разделов',
-	'end_session' : 'false',	
+	'end_session' : False,	
 	'card' : {
 	'type' : 'ItemsList',
 	'header' : {
@@ -39,32 +39,47 @@ def alicenok_help():
 
 # функция обрабатывает выбор раздела, и предоставляет информацию о нём
 def alicenok_help_handler(event):
-	payload = event['request']['payload']['info']
+	payload = event['request']['payload']['info'] 
 
-	if payload == 'info_developers':
-		return {
-		'response' : 
-		{'text' : 'Вы были перенаправлены на страницу Notion',
-		'end_session' : 'false'}, 
+	ERROR_RESPONSE = {
+		'response' : {
+		'text' : 'Малыш, повтори пожалуйста ещё раз',
+		'tts' : 'Малыш, повтори пожалуйста ещё раз',
+		'end_session' : False,
+		'buttons' : [
+		{'title' : 'Назад',
+		'payload' : {},
+		'hide' : True}]},
 		'version' : '1.0'}
 
-	elif payload == 'info_entertainments':
-		return {
-		'response' : 
-		{'text' : 'Раздел "Развлечения" предоставляет всякого рода медиаконтент, например: мультики, сказки, песенки',
-		'tts' : 'Раздел "Развлечения" предоставляет всякого рода медиаконтент, например: мультики, сказки, песенки',
-		'end_session' : 'false'},
-		'version' : '1.0'}
+	try:
+		if payload == 'info_developers':
+			return {
+			'response' : 
+			{'text' : 'Вы были перенаправлены на страницу Notion',
+			'end_session' : False}, 
+			'version' : '1.0'}
 
-	elif payload == 'info_games':
-		return {
-		'response' : 
-		{'text' : 'Раздел "Мини-игры" позволяет обучаться в игровой форме. Раздел находится в стадии разработки'}, 
-		'version' : '1.0'}
+		elif payload == 'info_entertainments':
+			return {
+			'response' : 
+			{'text' : 'Раздел "Развлечения" предоставляет всякого рода медиаконтент, например: мультики, сказки, песенки',
+			'tts' : 'Раздел "Развлечения" предоставляет всякого рода медиаконтент, например: мультики, сказки, песенки',
+			'end_session' : False},
+			'version' : '1.0'}
 
-	elif payload == 'info_alicenok':
-		return {
-		'response' : 
-		{'text' : 'Раздел "Алисёнок" представляет из себя виртуального питомца, которого можно покормить, напоить, выгулять, помыть',
-		'end_session' : 'false'},
-		'version' : '1.0'}
+		elif payload == 'info_games':
+			return {
+			'response' : 
+			{'text' : 'Раздел "Мини-игры" позволяет обучаться в игровой форме. Раздел находится в стадии разработки'}, 
+			'version' : '1.0'}
+
+		elif payload == 'info_alicenok':
+			return {
+			'response' : 
+			{'text' : 'Раздел "Алисёнок" представляет из себя виртуального питомца, которого можно покормить, напоить, выгулять, помыть',
+			'end_session' : False},
+			'version' : '1.0'}
+
+	except KeyError:
+		return ERROR_RESPONSE
