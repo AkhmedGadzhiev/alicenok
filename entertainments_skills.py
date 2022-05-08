@@ -1,6 +1,6 @@
 # import
-from on_cartoons import *
-from messages import *
+from skills.alicenok.on_cartoons import *
+from skills.alicenok.messages import *
 
 
 # функция возвращает список развлечений
