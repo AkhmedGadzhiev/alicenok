@@ -8,6 +8,7 @@ from skills.alicenok.alicenok import *
 
 # функция отправляет назад
 def back(event):
+	event = request.json
 	payload = event['request']['payload']['back']
 
 	if payload == 'alicenok_help_back':
