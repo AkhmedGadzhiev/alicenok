@@ -4,7 +4,7 @@ def on_cartoons():
 	'response' : {
 	'text' : 'Вот список моих мультиков',
 	'tts' : 'Вот список моих мультиков',
-	'end_session' : 'false',
+	'end_session' : False,
 	'card' : {
 	'type' : 'ItemsList',
 	'header' : {
