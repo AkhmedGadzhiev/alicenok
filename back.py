@@ -1,9 +1,9 @@
 # import
-from main_skills import *
-from entertainments_skills import *
-from on_cartoons import *
-from games_list import *
-from alicenok import *
+from skills.alicenok.main_skills import *
+from skills.alicenok.entertainments_skills import *
+from skills.alicenok.on_cartoons import *
+from skills.alicenok.games_list import *
+from skills.alicenok.alicenok import *
 
 
 # функция отправляет назад
