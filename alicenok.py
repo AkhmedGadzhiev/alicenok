@@ -1,8 +1,8 @@
 # import
-from feed import *
-from drunk import *
-from walk import *
-from bathroom import *
+from skills.alicenok.feed import *
+from skills.alicenok.drunk import *
+from skills.alicenok.walk import *
+from skills.alicenok.bathroom import *
 
 
 # функция выводит вступительное сообщение
