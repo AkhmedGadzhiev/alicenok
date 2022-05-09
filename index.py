@@ -22,11 +22,6 @@ def handler():
     intents = event['request']['nlu']['intents']
     wellcome_message = event['state']['user']['wellcome_message']
 
-    response = {
-        'session': request.json['session'],
-        'version': request.json['version']
-    }
-
     ERROR_RESPONSE = {
         'response' : {
         'text' : 'Малыш, повтори пожалуйста ещё раз',
@@ -41,49 +36,49 @@ def handler():
 
     try:
         if wellcome_message == 'was' and event['session']['new']:
-            return {**response, **hi_message(event)}
+            return hi_message(event)
 
         if event['session']['new']:
-            return {**response, **wellcome_me_message()}
+            return wellcome_me_message()
 
         if 'main_skills' in intents:
-            return {**response, **main_skills()}
+            return main_skills()
         
         if 'skills' in intents:
-            return {**response, **skills(event)}
+            return skills(event)
 
         if 'entertainments' in intents:
-            return {**response, **entertainments(event)}
+            return entertainments(event)
 
         if 'continue' in intents:
-            return {**response, **alicenok()}
+            return alicenok()
             
         if 'back' in intents:
-            return {**response, **back(event)}
+            return back(event)
 
         if 'alicenok_actions' in intents:
-            return {**response, **alicenok_actions(event)}
+            return alicenok_actions(event)
 
         if 'bath' in intents:
-            return {**response, **bath_handler(event)}
+            return bath_handler(event)
 
         if 'drink' in intents:
-            return {**response, **drink_handler(event)}
+            return drink_handler(event)
 
         if 'eat' in intents:
-            return {**response, **feed_handler(event)}
+            return feed_handler(event)
 
         if 'walk' in intents:
-            return {**response, **walk_handler(event)}
+            return walk_handler(event)
 
         if 'help' in intents:
-            return {**response, **alicenok_help()}
+            return alicenok_help()
 
         if 'games' in intents:
-            return {**response, **make_response_error('Функция пока в стадии разработки')}
+            return make_response_error('Функция пока в стадии разработки')
 
         if intents == {}: 
-            return {**response, **fallback(event)}
+            return fallback(event)
 
     except KeyError:
         return ERROR_RESPONSE
