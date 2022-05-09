@@ -81,4 +81,5 @@ def handler():
             return fallback(event)
 
     except KeyError:
-        return ERROR_RESPONSE
+        return ERROR_RESPONSE 
+    
