@@ -20,7 +20,8 @@ alicenok_app = Blueprint('alicenok_app', __name__)
 def handler(): 
     event = request.json
     intents = event['request']['nlu']['intents']
-    wellcome_message = event['state']['user']['wellcome_message']
+    if 'state' in event and 'user' in event['state'] and 'wellcome_message' in event['state']['user']:
+        wellcome_message = event['state']['user']['wellcome_message']
 
     ERROR_RESPONSE = {
         'response' : {
